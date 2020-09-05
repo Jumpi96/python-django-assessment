@@ -15,7 +15,9 @@
         <a href="{{ movie.get_absolute_url }}">{{ movie.pk }}</a>
       </td>
       <td>{{ movie.title }}</td>
+      <td>{{ movie.rating }}</td>
       <!-- TODO: Render more movie properties and make sure action links work -->
+      <td><a href="{% url 'ratings:create' %}">Rate</a></td>
       <td><a href="{% url 'movies:update' movie.pk %}">Edit</a></td>
       <td><a href="{% url 'movies:delete' movie.pk %}">Delete</a></td>
     </tr>

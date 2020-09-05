@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from moviesapp.ratings.models import Rating
+from statistics import mean
 
 
 class Movie(models.Model):
@@ -15,7 +17,11 @@ class Movie(models.Model):
     plot = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
-    # Todo: add Rating models
+    
+    @property
+    def rating(self):
+        ratings = [r.stars for r in Rating.objects.filter(movie=self)]
+        return mean(ratings) if ratings else 0
 
     def __str__(self):
         return self.title
