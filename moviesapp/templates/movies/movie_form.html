@@ -14,6 +14,7 @@
   action="{% url 'movies:update' object.pk %}"
 {% endif %}>
   {% csrf_token %}
+  {% if 'create' in request.path %}<h3>Add new movie</h3>{% else %}<h3>Update a movie</h3>{% endif %}
   {{ form.as_p }}
   <div class="control-group">
     <div class="controls">
