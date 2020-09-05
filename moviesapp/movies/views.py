@@ -38,3 +38,8 @@ class MovieUpdateView(UpdateView):
 
 class MovieDeleteView(DeleteView):
     """Delete the requested movie."""
+
+    model = Movie
+
+    def get_success_url(self):
+        return reverse_lazy('movies:index')
