@@ -15,10 +15,13 @@ class MovieListView(ListView):
     """Show all movies."""
 
     model = Movie
+    ordering = ['-released_on']
 
 
 class MovieDetailView(DetailView):
     """Show the requested movie."""
+
+    model = Movie
 
 
 class MovieCreateView(CreateView):
