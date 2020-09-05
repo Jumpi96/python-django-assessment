@@ -4,6 +4,7 @@
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
+from django.db.models import Avg
 from django.shortcuts import redirect
 from django.http import Http404
 from django.urls import reverse_lazy
@@ -15,7 +16,11 @@ class MovieListView(ListView):
     """Show all movies."""
 
     model = Movie
-    ordering = ['-released_on']
+
+    def get_queryset(self):
+        return Movie.objects \
+            .annotate(avg_rating=Avg('rating__stars')) \
+            .order_by('released_on', '-avg_rating')
 
 
 class MovieDetailView(DetailView):
