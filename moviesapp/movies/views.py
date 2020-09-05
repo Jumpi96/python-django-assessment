@@ -35,6 +35,10 @@ class MovieCreateView(CreateView):
 class MovieUpdateView(UpdateView):
     """Update the requested movie."""
 
+    model = Movie
+    fields = ['title', 'year', 'rated', 'released_on', 'genre', \
+        'director', 'plot']
+
 
 class MovieDeleteView(DeleteView):
     """Delete the requested movie."""
