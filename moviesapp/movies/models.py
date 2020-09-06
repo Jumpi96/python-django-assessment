@@ -19,9 +19,13 @@ class Movie(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     @property
-    def rating(self):
+    def avg_ratings(self):
         ratings = [r.stars for r in Rating.objects.filter(movie=self)]
-        return (mean(ratings), len(ratings)) if ratings else (0, 0)
+        return mean(ratings) if ratings else 0
+    
+    @property
+    def num_ratings(self):
+        return len(Rating.objects.filter(movie=self))
 
     def __str__(self):
         return self.title
