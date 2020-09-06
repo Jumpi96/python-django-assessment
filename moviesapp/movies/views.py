@@ -8,6 +8,8 @@ from django.db.models import Avg
 from django.shortcuts import redirect
 from django.http import Http404
 from django.urls import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 
 from .models import Movie
 
@@ -27,28 +29,42 @@ class MovieDetailView(DetailView):
     """Show the requested movie."""
 
     model = Movie
+    pk_url_kwarg = "id"
 
 
-class MovieCreateView(CreateView):
+class MovieCreateView(SuccessMessageMixin, CreateView):
     """Create a new movie."""
 
     model = Movie
     fields = ['title', 'year', 'rated', 'released_on', 'genre', \
         'director', 'plot']
+    success_message = "The movie created successfully"
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'The creation has failed')
+        return self.render_to_response(self.get_context_data(request=self.request, form=form))
 
 
-class MovieUpdateView(UpdateView):
+class MovieUpdateView(SuccessMessageMixin, UpdateView):
     """Update the requested movie."""
 
     model = Movie
+    pk_url_kwarg = "id"
     fields = ['title', 'year', 'rated', 'released_on', 'genre', \
         'director', 'plot']
+    success_message = "The movie updated successfully"
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'The update has failed')
+        return self.render_to_response(self.get_context_data(request=self.request, form=form))
 
 
-class MovieDeleteView(DeleteView):
+class MovieDeleteView(SuccessMessageMixin, DeleteView):
     """Delete the requested movie."""
 
     model = Movie
+    pk_url_kwarg = "id"
 
     def get_success_url(self):
+        messages.add_message(self.request, messages.SUCCESS, 'The movie deleted successfully')
         return reverse_lazy('movies:index')

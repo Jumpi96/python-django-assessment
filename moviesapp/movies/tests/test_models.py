@@ -5,6 +5,8 @@ from moviesapp.movies.models import Movie
 
 class TestMovie(TestCase):
 
+    fixtures = ['movie.json'] # Using fixture to load data.
+
     def setUp(self):
         self.movie = Movie.objects.get(pk=1)
 

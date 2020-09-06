@@ -36,3 +36,6 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
         'django.template.loaders.app_directories.Loader',
     ]),
 ]
+
+# Using fixtures to load data in testing.
+FIXTURE_DIRS = ('moviesapp/fixtures/')
