@@ -12,6 +12,7 @@ urlpatterns = [
     path('movies/', include(('moviesapp.movies.urls', 'movies'))),
     path('ratings/', include(('moviesapp.ratings.urls', 'ratings'))),
     path('api/movies/', include(('moviesapp.movies.api_urls', 'moviesAPI'))),
+    path('api/ratings/', include(('moviesapp.ratings.api_urls', 'ratingsAPI'))),
 
     path(settings.ADMIN_URL, admin.site.urls),  # {% url 'admin:index' %}
     re_path(r'^api-auth/', include('rest_framework.urls')),

@@ -17,11 +17,11 @@ class Movie(models.Model):
     plot = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
-    
+
     @property
     def rating(self):
         ratings = [r.stars for r in Rating.objects.filter(movie=self)]
-        return mean(ratings) if ratings else 0
+        return (mean(ratings), len(ratings)) if ratings else (0, 0)
 
     def __str__(self):
         return self.title

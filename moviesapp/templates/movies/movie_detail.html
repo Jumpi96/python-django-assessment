@@ -5,7 +5,7 @@
     <dl class="dl-horizontal">
       <h3>{{ object.title }} ({{ object.year }})</h3>
       <p><i>{{ object.rated }}</i></p>
-      <p>{{ object.rating }}/5 stars</p>
+      <p>{{ object.rating.0 }}/5 ⭐ ({{ movie.rating.1 }} ratings)</p>
       <p><b>Genre:</b> {{ object.genre }}.</p>
       <p><b>Released date:</b> {{ object.released_on|date }}.</p>
       <p><b>Director:</b> {{ object.director }}.</p>

@@ -72,6 +72,7 @@ class MovieDeleteView(SuccessMessageMixin, DeleteView):
         messages.add_message(self.request, messages.SUCCESS, 'The movie deleted successfully')
         return reverse_lazy('movies:index')
 
-class MovieViewSet(viewsets.ModelViewSet):
+
+class MovieViewSetAPI(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
