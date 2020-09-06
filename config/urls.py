@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views import defaults as default_views
@@ -11,8 +11,10 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     path('movies/', include(('moviesapp.movies.urls', 'movies'))),
     path('ratings/', include(('moviesapp.ratings.urls', 'ratings'))),
-    
+    path('api/movies/', include(('moviesapp.movies.api_urls', 'moviesAPI'))),
+
     path(settings.ADMIN_URL, admin.site.urls),  # {% url 'admin:index' %}
+    re_path(r'^api-auth/', include('rest_framework.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

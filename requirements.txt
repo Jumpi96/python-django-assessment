@@ -71,3 +71,6 @@ webencodings==0.5.1
 widgetsnbextension==3.5.1
 wrapt==1.12.1
 zipp==3.1.0
+djangorestframework==3.11.1
+markdown==3.2.2
+django-filter==2.3.0

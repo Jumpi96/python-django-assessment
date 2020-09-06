@@ -27,6 +27,9 @@ DJANGO_APPS = (
 
     # Admin
     'django.contrib.admin',
+
+    # REST
+    'rest_framework',
 )
 THIRD_PARTY_APPS = ()
 
@@ -146,3 +149,11 @@ AUTHENTICATION_BACKENDS = (
 )
 
 ADMIN_URL = 'admin/'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

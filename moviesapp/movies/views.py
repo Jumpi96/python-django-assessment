@@ -10,8 +10,11 @@ from django.http import Http404
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from rest_framework import viewsets
+
 
 from .models import Movie
+from .serializers import MovieSerializer
 
 
 class MovieListView(ListView):
@@ -68,3 +71,7 @@ class MovieDeleteView(SuccessMessageMixin, DeleteView):
     def get_success_url(self):
         messages.add_message(self.request, messages.SUCCESS, 'The movie deleted successfully')
         return reverse_lazy('movies:index')
+
+class MovieViewSet(viewsets.ModelViewSet):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
