@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Rating(models.Model):
-    movie = models.ForeignKey('movies.Movie', on_delete=models.CASCADE)
+    movie = models.ForeignKey('movies.Movie', related_name='ratings', on_delete=models.CASCADE)
     stars = models.PositiveIntegerField()
     comment = models.CharField(max_length=280)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
