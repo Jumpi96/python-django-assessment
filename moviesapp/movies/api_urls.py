@@ -10,4 +10,5 @@ router.register(r'', views.MovieViewSetAPI)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('<int:id>', views.MovieRetrieveAPI.as_view(), name="get_movie")
 ]

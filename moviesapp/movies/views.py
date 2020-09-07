@@ -10,8 +10,7 @@ from django.http import Http404
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from rest_framework import viewsets
-
+from rest_framework import viewsets, generics
 
 from .models import Movie
 from .serializers import MovieSerializer
@@ -25,7 +24,7 @@ class MovieListView(ListView):
     def get_queryset(self):
         return Movie.objects \
             .annotate(avg_rating=Avg('rating__stars')) \
-            .order_by('released_on', '-avg_rating')
+            .order_by('-released_on', '-avg_rating')
 
 
 class MovieDetailView(DetailView):
@@ -76,3 +75,11 @@ class MovieDeleteView(SuccessMessageMixin, DeleteView):
 class MovieViewSetAPI(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
+
+    def get_queryset(self):
+        return Movie.objects.order_by('-released_on')
+
+class MovieRetrieveAPI(generics.RetrieveAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+    lookup_field = 'id'

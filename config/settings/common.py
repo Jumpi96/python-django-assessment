@@ -30,6 +30,9 @@ DJANGO_APPS = (
 
     # REST
     'rest_framework',
+
+    # CORS
+    'corsheaders',
 )
 THIRD_PARTY_APPS = ()
 
@@ -48,6 +51,7 @@ MIDDLEWARE = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 )
 
 MIGRATION_MODULES = {
@@ -157,3 +161,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000'
+]

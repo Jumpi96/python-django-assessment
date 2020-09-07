@@ -6,5 +6,5 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.RatingCreateListAPI.as_view(), name="")
+    path('', views.RatingCreateListAPI.as_view(), name="post_rating")
 ]
