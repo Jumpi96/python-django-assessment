@@ -163,5 +163,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000'
+    'http://localhost:3000',
+    'http://localhost',
+    'http://ec2-54-149-233-134.us-west-2.compute.amazonaws.com'
 ]
