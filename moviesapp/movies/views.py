@@ -23,7 +23,7 @@ class MovieListView(ListView):
 
     def get_queryset(self):
         return Movie.objects \
-            .annotate(avg_rating=Avg('rating__stars')) \
+            .annotate(avg_rating=Avg('ratings__stars')) \
             .order_by('-released_on', '-avg_rating')
 
 
